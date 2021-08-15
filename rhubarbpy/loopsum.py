@@ -13,3 +13,17 @@ def loopsum(x: List[Number]) -> Number:
     for i in x:
         total += i
     return total
+
+
+def fibonacci(x: int) -> List[int]:
+    """The classic fibonacci function for the
+    Nth number in the series.
+    """
+    assert x >= 0
+
+    if x == 0:
+        return 0
+    elif x <= 2:
+        return 1
+    else:
+        return fibonacci(x - 1) + fibonacci(x - 2)
