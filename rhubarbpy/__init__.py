@@ -1,4 +1,4 @@
-from .loopsum import loopsum
+from .loopsum import loopsum, fibonacci
 from importlib.metadata import version, PackageNotFoundError
 
 try:
