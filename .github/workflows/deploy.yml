@@ -1,11 +1,14 @@
-name: package-actions
-on: [push]
+name: deploy-package
+on:
+  push:
+    tags:
+      - v*
 jobs:
   package-actions:
-    strategy:
-      matrix:
-        pyversion: ["3.8", "3.9"]
-        # os: ["ubuntu-latest", "windows-latest", "macos-latest"]
+    # strategy:
+    #   matrix:
+    #     pyversion: ["3.8", "3.9"]
+    # os: ["ubuntu-latest", "windows-latest", "macos-latest"]
     runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +19,7 @@ jobs:
         # Setup python, later we set this to version 3.9.
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.pyversion }}
+          python-version: "3.9"
       - name: Install package
         run: pip install .[test]
       - name: Running Tests
