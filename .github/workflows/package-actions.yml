@@ -2,11 +2,11 @@ name: package-actions
 on: [push]
 jobs:
   package-actions:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         pyversion: ["3.8", "3.9"]
-        runos: ["ubuntu-latest", "windows-latest", "macos-latest"]
+        os: ["ubuntu-latest", "windows-latest", "macos-latest"]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
         with:
