@@ -9,3 +9,5 @@ jobs:
         with:
           python-version: "3.9"
       - run: pip list
+      - run: pip install .
+      - run: pip list
