@@ -3,6 +3,9 @@ on: [push]
 jobs:
   package-actions:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pyversion: ["3.7", "3.8", "3.9"]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -12,7 +15,7 @@ jobs:
         # Setup python, later we set this to version 3.9.
       - uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: ${{ matrix.pyversion }}
       - name: Install package
         run: pip install .[test]
       - name: Running Tests
