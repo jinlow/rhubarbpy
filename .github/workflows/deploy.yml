@@ -20,7 +20,13 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: "3.9"
-      - name: Install package
-        run: pip install .[test]
-      - name: Running Tests
-        run: pytest testing
+      - name: Install packages
+        run: pip install build twine
+      - name: Build package
+        run: python -m build
+      - name: Deploy Package
+        shell: bash
+        env:
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: twine upload dist/* -u $PYPI_USERNAME  -p $PYPI_PASSWORD
