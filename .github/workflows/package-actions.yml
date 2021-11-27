@@ -6,11 +6,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          # Need to set this to 0 for setuptools-scm, so that it will grab all
+          # history to get the tag correct.
           fetch-depth: 0
+        # Setup python, later we set this to version 3.9.
       - uses: actions/setup-python@v2
         with:
           python-version: "3.9"
       - run: pip list
-      - run: pip install .
-      - run: git describe
+      - run: pip install .[test]
       - run: pip list
+      - run: pytest testing
